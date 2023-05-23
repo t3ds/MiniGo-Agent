@@ -1,0 +1,31 @@
+def solution(segments):
+    n = len(segments)
+    mp = {}
+    
+    for i in range(n):
+        if segments[i] in mp:
+            mp[segments[i]]+=1
+        else: mp[segments[i]] = 1
+        
+    vec = []
+    
+    for k,v in mp.items():
+        if v>3:
+            return 0
+        if v>1:
+            vec.append(k)
+    if len(vec)<2:
+        return -1
+        
+    vec = sorted(vec)
+    
+    res = float('inf')
+    
+    for i in range(1,len(vec)):
+        res = min(res, vec[i] - vec[i-1])
+        
+    return res
+    
+
+print(solution([4,1,1,1,3]))
+    
